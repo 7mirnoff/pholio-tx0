@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "dev": "gulp dev",
-    "prod": "gulp prod",
+    "start": "gulp prod",
     "zip": "gulp archive",
     "clean": "gulp clean-all"
   },
