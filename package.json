@@ -2,7 +2,7 @@
   "name": "threejs-builder",
   "version": "1.0.1",
   "description": "0",
-  "main": "dist/index.html",
+  "main": "",
   "scripts": {
     "dev": "gulp dev",
     "start": "gulp prod",

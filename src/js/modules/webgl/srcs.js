@@ -1,14 +1,14 @@
 const SRCS = {
   preloader: [{
-    path: '../assets/img/logo.svg',
-    name: 'particle_mask_1',
+    path: '../assets/img/matcaps/161B1F_C7E0EC_90A5B3_7B8C9B-512px.png',
+    name: 'matcap',
     type: 'texture'
-  }
-  //   {
-  //   path: '../source/scenes/console/preloader/scene.json',
-  //   name: 'preloader_scene',
-  //   type: 'scene'
-  // },
+  },
+    {
+    path: '../assets/img/matcaps/D1AC04_F8E50A_EDD004_B38D04-512px.png',
+    name: 'matcap2',
+    type: 'texture'
+  },
 
   // {
   //   path: '../source/textures/console/preloader/particle_2.png',

@@ -1,6 +1,7 @@
 import GUM from './gum/gum'
 import SRCS from './srcs'
 import * as THREE from 'three'
+import { computeFaceCentroids } from './utils'
 
 window.onload = function () {
   director.init()
@@ -36,8 +37,28 @@ const director = {
 
 const initScene = (gum) => {
   const g = gum
-  var geometry = new THREE.BoxGeometry(1, 1, 1)
-  var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-  var cube = new THREE.Mesh(geometry, material)
-  g.v.scene.add(cube)
+  console.log(g)
+
+  const objectArt = new THREE.Object3D()
+  g.v.scene.add(objectArt)
+
+  const geometry = new THREE.IcosahedronGeometry(1, 0)
+  const material = new THREE.MeshMatcapMaterial({ matcap: g.d.res.textures.matcap })
+  const icosahedron = new THREE.Mesh(geometry, material)
+  objectArt.add(icosahedron)
+
+  const sphereGeometry = new THREE.SphereGeometry(0.05,12,12)
+  const sphereMaterial = new THREE.MeshMatcapMaterial({ matcap: g.d.res.textures.matcap2 })
+
+  computeFaceCentroids(geometry)
+  icosahedron.geometry.faces.forEach((face) => {
+    const centerFace = face.centroid.clone()
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+    sphere.position.set(centerFace.x, centerFace.y, centerFace.z)
+    objectArt.add(sphere)
+  })
+
+  g.l.addLoop('rotate', () => {
+    objectArt.rotation.y -= 0.002
+  })
 }
